@@ -14,9 +14,9 @@
   <xacro:include filename="$(find clover_description)/urdf/sensors/distance_sensor.urdf.xacro"/>
   <xacro:include filename="$(find clover_description)/urdf/leds/led_strip.xacro"/>
   
-  <!-- Use Intel Realsense D455 -->
+  <!-- Use Intel Realsense D435 -->
   <xacro:include filename="$(find realsense2_description_px4)/urdf/_d435.urdf.xacro"/>
-  <xacro:if value="$(arg d455)">
+  <xacro:if value="$(arg d435)">
     <xacro:sensor_d435 name="camera" topics_ns="camera" parent="base_link" publish_pointcloud="true">
       <origin xyz="0 0 0.2" rpy="0 0 0" />
     </xacro:sensor_d435>
