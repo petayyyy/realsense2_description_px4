@@ -15,5 +15,6 @@ sudo mv clover_description/ ~/catkin_ws/src/clover/clover_description
 ```bash
 cd ~/catkin_ws/
 source ~./bashrc
-catkin_make
+catkin_make # 18.04 ubuntu
+#catkin_make -DCMAKE_CXX_STANDARD=14 # 20.04 ubuntu
 ```
