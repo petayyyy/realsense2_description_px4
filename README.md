@@ -11,4 +11,9 @@ git clone https://github.com/issaiass/realsense_gazebo_plugin
 cd ~/catkin_ws/src/realsense2_description_px4
 sudo mv clover_description/ ~/catkin_ws/src/clover/clover_description/
 ```
-
+Билдим все зависимости:
+```bash
+cd ~/catkin_ws/
+source ~./bashrc
+catkin_make
+```
