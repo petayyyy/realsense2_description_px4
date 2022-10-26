@@ -8,10 +8,20 @@
     <arg name="rangefinder" default="true"/>
     <arg name="led" default="true"/>
     <arg name="gps" default="true"/>
+    <arg name="d455" default="true"/>
     <!-- Use physics parameters from CAD programs -->
     <arg name="use_clover_physics" default="false"/>
 
-    <arg name="cmd" default="$(find xacro)/xacro $(find clover_description)/urdf/clover/clover4.xacro main_camera:=$(arg main_camera) rangefinder:=$(arg rangefinder) led:=$(arg led) gps:=$(arg gps) maintain_camera_rate:=$(arg maintain_camera_rate) use_clover_physics:=$(arg use_clover_physics)"/>
+    <!-- Use Intel Realsense D455 -->
+    <group if="$(arg d455)">
+        <node pkg="robot_state_publisher" type="robot_state_publisher"  name="robot_state_publisher">
+          <param name="publish_frequency" type="double" value="30.0" />
+        </node>
+        <arg name="model" default="$(find realsense2_description_px4)/urdf/test_d435_camera.urdf.xacro"/>
+        <param name="robot_description" command="$(find xacro)/xacro --inorder $(arg model) use_nominal_extrinsics:=true add_plug:=true" />
+    </group>
+    
+    <arg name="cmd" default="$(find xacro)/xacro $(find clover_description)/urdf/clover/clover4.xacro main_camera:=$(arg main_camera) rangefinder:=$(arg rangefinder) led:=$(arg led) gps:=$(arg gps) maintain_camera_rate:=$(arg maintain_camera_rate) use_clover_physics:=$(arg use_clover_physics) d455:=$(arg d455)"/>
     <param command="$(arg cmd)" name="drone_description"/>
     <!-- Note: -package_to_model replaces all mentions of "package://" with "model://" in urdf URIs -->
     <node name="$(anon spawn)" output="screen" pkg="gazebo_ros" type="spawn_model" args="-urdf -param drone_description -model clover -z 0.3"/> 
