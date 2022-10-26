@@ -9,7 +9,8 @@ git clone https://github.com/issaiass/realsense_gazebo_plugin
 Для запуска realsense на дроне необходимо заменить папку:
 ```bash
 cd ~/catkin_ws/src/realsense2_description_px4
-sudo mv clover_description/ ~/catkin_ws/src/clover/clover_description
+sudo rm -r ~/catkin_ws/src/clover/clover_description
+sudo mv clover_description/ ~/catkin_ws/src/clover/
 ```
 Билдим все зависимости:
 ```bash
